@@ -6,7 +6,7 @@
       <h1 class="has-text-weight-bold is-size-3">Contact Us</h1>
        
       
-       <form name="form" (submit)="addPost(myForm)" #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate  (submit)="sendNotification()" novalidate class="feedback-form">
+       <form name="form" #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate  (submit)="sendNotification()" novalidate class="feedback-form">
        <div class="field">
            <label class="label font-weight-bold">Name</label>
            <div class="control has-icons-left has-icons-right">
