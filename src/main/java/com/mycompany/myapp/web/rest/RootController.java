@@ -33,7 +33,7 @@ public class RootController {
 	   }
 	   
 	   
-	   return "redirect:/api/contact";
+	   return "redirect:/home.component.html";
    }
 
 }
