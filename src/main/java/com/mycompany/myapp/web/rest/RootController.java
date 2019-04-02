@@ -1,22 +1,24 @@
-package com.mycompany.myapp.service;
+package com.mycompany.myapp.web.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.mycompany.myapp.service.UserModel.*;
+import com.mycompany.myapp.service.SmtpMailSender;
+import com.mycompany.myapp.service.UserModel;
 
-@Controller
+
+@RestController
 public class RootController {
 
 	@Autowired
 	private SmtpMailSender smtpMailSender;
 
-	@PostMapping("/api/contact")
-   public String signupSuccess(@RequestParam("subject") String subject, @RequestParam("message") String message, @RequestParam("email") String email, @RequestParam("name") String name) {
+	@RequestMapping("/api/contact")
+   public String signupSuccess(@RequestParam(value="subject",required=false) String subject, @RequestParam(value="message",required=false) String message, @RequestParam(value="email",required=false) String email, @RequestParam(value="name",required=false) String name) {
 	   
 	   UserModel usermodel = new UserModel();
 	   usermodel.setSubject(subject);
