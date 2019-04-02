@@ -28,7 +28,7 @@ public class SmtpMailSender {
 		  
 		  mail.setTo(usermodel.getEmail());
 		  mail.setFrom("robcotechbase@gmail.com");
-		  mail.setSubject(usermodel.getMessage());
+		  mail.setSubject(usermodel.getSubject());
 		  mail.setText(sb.toString());
 		  
 		  javaMailSender.send(mail);

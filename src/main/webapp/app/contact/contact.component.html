@@ -6,11 +6,14 @@
       <h1 class="has-text-weight-bold is-size-3">Contact Us</h1>
        
       
-       <form name="form" #f="ngForm"  (submit)="sendNotification()" novalidate class="feedback-form">
+       <form name="form" (submit)="addPost(myForm)" #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate  (submit)="sendNotification()" novalidate class="feedback-form">
        <div class="field">
            <label class="label font-weight-bold">Name</label>
            <div class="control has-icons-left has-icons-right">
-            <input type="text" name="name" class="form-control" placeholder="Enter your name" [(ngModel)]="model.name" required>
+            <input type="text" name="name" #nameRef="ngModel" required class="form-control" placeholder="Enter your name" [(ngModel)]="model.name" required>
+            <div [hidden]="nameRef.valid || nameRef.pristine" class="alert alert-danger">
+              Please enter your name
+            </div>
             <span class="icon is-small is-left">
       <i class="fas fa-user"></i>
     </span>
@@ -23,8 +26,12 @@
            <label class="label font-weight-bold">Email</label>
            <div class="control has-icons-left has-icons-right">
              
-            <input type="email" name="email" class="form-control" placeholder="Enter your email" [(ngModel)]="model.email" required>
-                       
+            <input type="email" #refPincode="ngModel" name="email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" class="form-control" placeholder="Enter your email" [(ngModel)]="model.email" required>
+              <div [hidden]="!refPincode.errors.pattern" *ngIf="refPincode.errors && (refPincode.dirty || refPincode.touched)" class="alert alert-danger">
+                <div>
+                  Please enter in format that includes '@'
+                </div>
+              </div>         
       <i class="fas fa-envelope"></i>
     </span>
           </div>
@@ -32,7 +39,10 @@
         <div class="field">
            <label class="label font-weight-bold">Subject</label>
            <div class="control has-icons-left has-icons-right"></div>
-            <input type="text" name="subject" class="form-control" placeholder="Enter subject" [(ngModel)]="model.subject" required>
+            <input type="text" #subjectRef="ngModel" required name="subject" class="form-control" placeholder="Enter subject" [(ngModel)]="model.subject" required>
+            <div [hidden]="subjectRef.valid || subjectRef.pristine" class="alert alert-danger">
+                Please enter subject
+              </div>
           </div>
           <div class="field">
            <label class="label font-weight-bold">Message</label>
@@ -41,7 +51,7 @@
           </div>
 
           <div class="control">
-            <button type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit">
+            <button [disabled]="!f.form.valid" type="submit" name="submit" id="submit"  class="btn btn-primary" value="Submit">
               <span>Submit</span>
             </button>
           </div>
