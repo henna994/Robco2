@@ -78,6 +78,9 @@ public class RootController {
 		   usermodel.setMessage(contactDTO.getMessage());
 		   usermodel.setEmail("robcotechbase@gmail.com");
 			 usermodel.setName(contactDTO.getName());
+			 usermodel.setEmailMsg(contactDTO.getEmailMsg());
+
+			 
 
 	   
 		   try {

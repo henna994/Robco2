@@ -7,7 +7,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 
-import com.mycompany.myapp.service.UserModel.*;
+import com.mycompany.myapp.service.UserModel;
 
 @Component
 public class SmtpMailSender {
@@ -22,8 +22,8 @@ public class SmtpMailSender {
 		  
 		  StringBuilder sb = new StringBuilder();
 		  sb.append("Name: " + usermodel.getName()).append(System.lineSeparator());
-		  sb.append("Email: " + usermodel.getEmailMsg()).append(System.lineSeparator());
-		  sb.append("\n Message: " + usermodel.getMessage());
+		  sb.append("\nEmail: " + usermodel.getEmailMsg()).append(System.lineSeparator());
+		  sb.append("\nMessage: " + usermodel.getMessage());
 		  
 		  SimpleMailMessage mail = new SimpleMailMessage();
 		  

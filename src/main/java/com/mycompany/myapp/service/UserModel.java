@@ -3,14 +3,11 @@ package com.mycompany.myapp.service;
 public class UserModel {
 	
 	private String name;
+	private String emailMsg;
 	private String email;
 	private String subject;
 	private String message;
-	private String emailMsg;
 
-
-
-	
 	public UserModel() {
 		
 	}
