@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 public class ContactDTO {
 
     private String email;
+    private String emailMsg;
 		private String subject;
 		private String message;
         private String name;
-        private String emailMsg;
 
 
     public ContactDTO() {
@@ -32,9 +32,9 @@ public class ContactDTO {
     public ContactDTO(ContactDTO contact) {
 			this.name = contact.name;
 			this.message = contact.message;
-			this.email = contact.email;
+            this.email = contact.email;
+            this.emailMsg = contact.emailMsg;
             this.subject = contact.subject;
-            this.emailMsg = contact.email;
     }
 
 
@@ -57,18 +57,16 @@ public class ContactDTO {
     public String getEmail() {
         return email;
     }
-
-    public void setEmailMsg(String emailMsg) {
-        this.emailMsg = emailMsg;
-    }
-    public String getEmailMsg() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
-		
+    public String getEmailMsg() {
+        return emailMsg;
+    }
+    public void setEmailMsg(String emailMsg) {
+        this.emailMsg = emailMsg;
+    }
+    
     public String getSubject() {
         return subject;
     }
@@ -82,7 +80,6 @@ public class ContactDTO {
             "name='" + name + '\'' +
             ", email='" + email + '\'' +
             ", subject'" + subject + '\'' +
-            ", emailMsg'" + emailMsg + '\'' +
             ", message='" + message + '\'' +
             "}";
     }

@@ -93,6 +93,31 @@ export class DevicesComponent implements OnInit, OnDestroy {
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
+        if (this.departSearch) {
+            this.devicesService
+                .search({
+                    query: this.departSearch
+                })
+                .pipe(
+                    filter((res: HttpResponse<IDevices[]>) => res.ok),
+                    map((res: HttpResponse<IDevices[]>) => res.body)
+                )
+                .subscribe((res: IDevices[]) => (this.devices = res), (res: HttpErrorResponse) => this.onError(res.message));
+            return;
+        }
+        this.devicesService
+            .query()
+            .pipe(
+                filter((res: HttpResponse<IDevices[]>) => res.ok),
+                map((res: HttpResponse<IDevices[]>) => res.body)
+            )
+            .subscribe(
+                (res: IDevices[]) => {
+                    this.devices = res;
+                    this.departSearch = '';
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
     search(query) {
         if (!query) {
