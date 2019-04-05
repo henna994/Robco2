@@ -22,6 +22,7 @@ public class SmtpMailSender {
 		  
 		  StringBuilder sb = new StringBuilder();
 		  sb.append("Name: " + usermodel.getName()).append(System.lineSeparator());
+		  sb.append("Email: " + usermodel.getEmailMsg()).append(System.lineSeparator());
 		  sb.append("\n Message: " + usermodel.getMessage());
 		  
 		  SimpleMailMessage mail = new SimpleMailMessage();
@@ -34,4 +35,4 @@ public class SmtpMailSender {
 		  javaMailSender.send(mail);
 		  }	  
 	  
-}
+		}

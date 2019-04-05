@@ -28,7 +28,7 @@
            <label class="label font-weight-bold">Email</label>
            <div class="control has-icons-left has-icons-right">
              
-            <input type="email" #refPincode="ngModel" name="email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" class="form-control" placeholder="Enter your email" [(ngModel)]="model.email" required>
+            <input type="email" #refPincode="ngModel" name="email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" class="form-control" placeholder="Enter your email" [(ngModel)]="model.emailMsg" required>
               <div [hidden]="!refPincode.errors.pattern" *ngIf="refPincode.errors && (refPincode.dirty || refPincode.touched)" class="alert alert-danger">
                 <div>
                   Please enter in format that includes '@'

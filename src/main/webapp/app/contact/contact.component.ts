@@ -11,7 +11,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ContactComponent implements OnInit {
     model: UserModel = {
         name: '',
-        email: '',
+        emailMsg: '',
         subject: '',
         message: ''
     };
@@ -24,7 +24,7 @@ export class ContactComponent implements OnInit {
     }
     ngOnInit() {}
     sendNotification(): void {
-        const url = 'http://localhost:8080/api/contact';
+        const url = 'http://localhost:9000/api/contact';
         this.http.post(url, this.model).subscribe(res => {
             location.reload();
         });
@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit {
 }
 export interface UserModel {
     name: string;
-    email: string;
+    emailMsg: string;
     subject: string;
     message: string;
 }
