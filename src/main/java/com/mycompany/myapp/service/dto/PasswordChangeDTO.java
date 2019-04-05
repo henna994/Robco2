@@ -6,7 +6,8 @@ package com.mycompany.myapp.service.dto;
 public class PasswordChangeDTO {
     private String currentPassword;
     private String newPassword;
-
+    private boolean authenticate;
+    
     public PasswordChangeDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -19,6 +20,20 @@ public class PasswordChangeDTO {
     public String getCurrentPassword() {
 
         return currentPassword;
+    }
+    public static boolean authenticate(String password)
+    {
+        // The password should be at least six characters long.
+        // The password should contain at least one letter.
+        // The password should have at least one digit.
+        if ((password.length() > 10) &&
+            (password.length() < 100) &&
+            (password.matches("[a-z]")) &&
+            (password.matches("[0-9]")))
+
+            return true;
+        else
+            return false;
     }
 
     public void setCurrentPassword(String currentPassword) {
