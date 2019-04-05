@@ -6,6 +6,8 @@ public class UserModel {
 	private String email;
 	private String subject;
 	private String message;
+	private String emailMsg;
+
 
 
 	
@@ -24,6 +26,12 @@ public class UserModel {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getEmailMsg() {
+		return emailMsg;
+	}
+	public void setEmailMsg(String emailMsg) {
+		this.emailMsg = emailMsg;
 	}
 	public String getMessage() {
 		return message;
