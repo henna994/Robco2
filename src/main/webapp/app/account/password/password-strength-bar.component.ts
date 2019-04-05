@@ -73,7 +73,7 @@ export class PasswordStrengthBarComponent {
                 this.renderer.setElementClass(element, element.className, false);
             }
             const lis = element.getElementsByTagName('li');
-            for (let i = 0; i < lis.length; i++) {
+            for (let i = 0; i < 6; i++) {
                 if (i < c.idx) {
                     this.renderer.setElementStyle(lis[i], 'backgroundColor', c.col);
                 } else {
