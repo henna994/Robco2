@@ -8,10 +8,12 @@ Main page styles
     width: 1450px;
     height: 700px;
     background: url('../../content/images/bg.jpg') no-repeat center top;
-    
-    background-size: cover;
-}
 
+    background-size: cover;
+    [class*='col-'] {
+        padding: 1rem;
+    }
+}
 
 .sign {
     position: absolute;
@@ -19,32 +21,31 @@ Main page styles
     height: 50px;
     right: 310px;
     top: 270px;
-  }
-  .hipster .inner{
+}
+.hipster .inner {
     position: absolute;
     width: 700px;
     height: 50px;
     right: 200px;
     top: 80px;
-  }
-  h1{
+}
+h1 {
     font-weight: bolder;
-
-  }
-  .reg {
+}
+.reg {
     position: absolute;
     width: 300px;
     height: 50px;
     right: 310px;
     top: 370px;
-  }
-  .success {
+}
+.success {
     position: absolute;
     width: 300px;
     height: 50px;
     right: 310px;
     top: 330px;
-  }
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (-moz-min-device-pixel-ratio: 2),

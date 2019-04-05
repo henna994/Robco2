@@ -50,11 +50,11 @@
                             <option value="available">Department1</option>
                         <option value="unavailable">Department2</option>
                     </select>
-                        <button class="input-group-append btn btn-info" (click)="finddepart(selectSearch)">
+                        <button class="input-group-append btn btn-info" (click)="finddepart(departSearch)">
                         <fa-icon [icon]="'search'"></fa-icon>
                         
                     </button>
-                    <button class="input-group-append btn btn-danger" (click)="deletedepart()" *ngIf="selectSearch">
+                    <button class="input-group-append btn btn-danger" (click)="deletedepart()" *ngIf="departSearch">
                         <fa-icon [icon]="'trash-alt'"></fa-icon>
                     </button>
             </form>
