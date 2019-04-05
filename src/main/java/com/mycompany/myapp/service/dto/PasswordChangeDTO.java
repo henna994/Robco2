@@ -6,7 +6,8 @@ package com.mycompany.myapp.service.dto;
 public class PasswordChangeDTO {
     private String currentPassword;
     private String newPassword;
-
+    private boolean authenticate;
+    
     public PasswordChangeDTO() {
         // Empty constructor needed for Jackson.
     }
