@@ -102,6 +102,9 @@ public class DevicesQueryService extends QueryService<Devices> {
             if (criteria.getType() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getType(), Devices_.type));
             }
+            if (criteria.getDepartment() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getDepartment(), Devices_.department));
+            }
         }
         return specification;
     }

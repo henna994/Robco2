@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(DevicesService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Devices(0, 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Devices(0, 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -59,7 +59,8 @@ describe('Service Tests', () => {
                         model: 1,
                         registered: 'BBBBBB',
                         availability: 'BBBBBB',
-                        type: 'BBBBBB'
+                        type: 'BBBBBB',
+                        department: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -80,7 +81,8 @@ describe('Service Tests', () => {
                         model: 1,
                         registered: 'BBBBBB',
                         availability: 'BBBBBB',
-                        type: 'BBBBBB'
+                        type: 'BBBBBB',
+                        department: 'BBBBBB'
                     },
                     elemDefault
                 );

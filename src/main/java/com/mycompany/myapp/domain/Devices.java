@@ -40,6 +40,9 @@ public class Devices implements Serializable {
     @Column(name = "jhi_type")
     private String type;
 
+    @Column(name = "department")
+    private String department;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -113,6 +116,19 @@ public class Devices implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public Devices department(String department) {
+        this.department = department;
+        return this;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -144,6 +160,7 @@ public class Devices implements Serializable {
             ", registered='" + getRegistered() + "'" +
             ", availability='" + getAvailability() + "'" +
             ", type='" + getType() + "'" +
+            ", department='" + getDepartment() + "'" +
             "}";
     }
 }

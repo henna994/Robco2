@@ -5,6 +5,7 @@ export interface IDevices {
     registered?: string;
     availability?: string;
     type?: string;
+    department?: string;
 }
 
 export class Devices implements IDevices {
@@ -14,6 +15,7 @@ export class Devices implements IDevices {
         public model?: number,
         public registered?: string,
         public availability?: string,
-        public type?: string
+        public type?: string,
+        public department?: string
     ) {}
 }

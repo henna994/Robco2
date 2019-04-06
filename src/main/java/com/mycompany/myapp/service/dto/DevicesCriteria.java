@@ -34,6 +34,8 @@ public class DevicesCriteria implements Serializable {
 
     private StringFilter type;
 
+    private StringFilter department;
+
     public LongFilter getId() {
         return id;
     }
@@ -82,6 +84,14 @@ public class DevicesCriteria implements Serializable {
         this.type = type;
     }
 
+    public StringFilter getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(StringFilter department) {
+        this.department = department;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -98,7 +108,8 @@ public class DevicesCriteria implements Serializable {
             Objects.equals(model, that.model) &&
             Objects.equals(registered, that.registered) &&
             Objects.equals(availability, that.availability) &&
-            Objects.equals(type, that.type);
+            Objects.equals(type, that.type) &&
+            Objects.equals(department, that.department);
     }
 
     @Override
@@ -109,7 +120,8 @@ public class DevicesCriteria implements Serializable {
         model,
         registered,
         availability,
-        type
+        type,
+        department
         );
     }
 
@@ -122,6 +134,7 @@ public class DevicesCriteria implements Serializable {
                 (registered != null ? "registered=" + registered + ", " : "") +
                 (availability != null ? "availability=" + availability + ", " : "") +
                 (type != null ? "type=" + type + ", " : "") +
+                (department != null ? "department=" + department + ", " : "") +
             "}";
     }
 

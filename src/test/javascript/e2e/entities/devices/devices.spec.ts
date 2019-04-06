@@ -44,13 +44,15 @@ describe('Devices e2e test', () => {
             devicesUpdatePage.setModelInput('5'),
             devicesUpdatePage.setRegisteredInput('registered'),
             devicesUpdatePage.setAvailabilityInput('availability'),
-            devicesUpdatePage.setTypeInput('type')
+            devicesUpdatePage.setTypeInput('type'),
+            devicesUpdatePage.setDepartmentInput('department')
         ]);
         expect(await devicesUpdatePage.getNameInput()).to.eq('name');
         expect(await devicesUpdatePage.getModelInput()).to.eq('5');
         expect(await devicesUpdatePage.getRegisteredInput()).to.eq('registered');
         expect(await devicesUpdatePage.getAvailabilityInput()).to.eq('availability');
         expect(await devicesUpdatePage.getTypeInput()).to.eq('type');
+        expect(await devicesUpdatePage.getDepartmentInput()).to.eq('department');
         await devicesUpdatePage.save();
         expect(await devicesUpdatePage.getSaveButton().isPresent()).to.be.false;
 

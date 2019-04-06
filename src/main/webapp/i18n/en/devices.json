@@ -20,7 +20,8 @@
             "model": "Model",
             "registered": "Registered",
             "availability": "Availability",
-            "type": "Type"
+            "type": "Type",
+            "department": "Department"
         }
     }
 }
