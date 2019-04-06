@@ -22,6 +22,10 @@
         {
             "fieldName": "type",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "department",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20190326181008",

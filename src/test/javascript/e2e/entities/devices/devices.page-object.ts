@@ -31,6 +31,7 @@ export class DevicesUpdatePage {
     registeredInput = element(by.id('field_registered'));
     availabilityInput = element(by.id('field_availability'));
     typeInput = element(by.id('field_type'));
+    departmentInput = element(by.id('field_department'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -74,6 +75,14 @@ export class DevicesUpdatePage {
 
     async getTypeInput() {
         return this.typeInput.getAttribute('value');
+    }
+
+    async setDepartmentInput(department) {
+        await this.departmentInput.sendKeys(department);
+    }
+
+    async getDepartmentInput() {
+        return this.departmentInput.getAttribute('value');
     }
 
     async save() {

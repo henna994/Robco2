@@ -18,8 +18,6 @@ export class DevicesComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
-    selectSearch: string;
-    departSearch: string;
 
     constructor(
         protected devicesService: DevicesService,
@@ -32,15 +30,8 @@ export class DevicesComponent implements OnInit, OnDestroy {
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
                 ? this.activatedRoute.snapshot.params['search']
                 : '';
-        this.selectSearch =
-            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
-                ? this.activatedRoute.snapshot.params['search']
-                : '';
-        this.departSearch =
-            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
-                ? this.activatedRoute.snapshot.params['search']
-                : '';
     }
+
     loadAll() {
         if (this.currentSearch) {
             this.devicesService
@@ -67,58 +58,8 @@ export class DevicesComponent implements OnInit, OnDestroy {
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
-
-        if (this.selectSearch) {
-            this.devicesService
-                .search({
-                    query: this.selectSearch
-                })
-                .pipe(
-                    filter((res: HttpResponse<IDevices[]>) => res.ok),
-                    map((res: HttpResponse<IDevices[]>) => res.body)
-                )
-                .subscribe((res: IDevices[]) => (this.devices = res), (res: HttpErrorResponse) => this.onError(res.message));
-            return;
-        }
-        this.devicesService
-            .query()
-            .pipe(
-                filter((res: HttpResponse<IDevices[]>) => res.ok),
-                map((res: HttpResponse<IDevices[]>) => res.body)
-            )
-            .subscribe(
-                (res: IDevices[]) => {
-                    this.devices = res;
-                    this.selectSearch = '';
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-        if (this.departSearch) {
-            this.devicesService
-                .search({
-                    query: this.departSearch
-                })
-                .pipe(
-                    filter((res: HttpResponse<IDevices[]>) => res.ok),
-                    map((res: HttpResponse<IDevices[]>) => res.body)
-                )
-                .subscribe((res: IDevices[]) => (this.devices = res), (res: HttpErrorResponse) => this.onError(res.message));
-            return;
-        }
-        this.devicesService
-            .query()
-            .pipe(
-                filter((res: HttpResponse<IDevices[]>) => res.ok),
-                map((res: HttpResponse<IDevices[]>) => res.body)
-            )
-            .subscribe(
-                (res: IDevices[]) => {
-                    this.devices = res;
-                    this.departSearch = '';
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
     }
+
     search(query) {
         if (!query) {
             return this.clear();
@@ -126,32 +67,12 @@ export class DevicesComponent implements OnInit, OnDestroy {
         this.currentSearch = query;
         this.loadAll();
     }
-    find(query) {
-        if (!query) {
-            return this.clear();
-        }
-        this.selectSearch = query;
-        this.loadAll();
-    }
-    finddepart(query) {
-        if (!query) {
-            return this.clear();
-        }
-        this.departSearch = query;
-        this.loadAll();
-    }
+
     clear() {
         this.currentSearch = '';
         this.loadAll();
     }
-    delete() {
-        this.selectSearch = '';
-        this.loadAll();
-    }
-    deletedepart() {
-        this.departSearch = '';
-        this.loadAll();
-    }
+
     ngOnInit() {
         this.loadAll();
         this.accountService.identity().then(account => {

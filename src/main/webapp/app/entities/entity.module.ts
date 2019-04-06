@@ -7,6 +7,10 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'devices',
                 loadChildren: './devices/devices.module#RobcoDevicesModule'
+            },
+            {
+                path: 'devices',
+                loadChildren: './devices/devices.module#RobcoDevicesModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

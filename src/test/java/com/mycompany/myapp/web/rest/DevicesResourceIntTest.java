@@ -62,6 +62,9 @@ public class DevicesResourceIntTest {
     private static final String DEFAULT_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_TYPE = "BBBBBBBBBB";
 
+    private static final String DEFAULT_DEPARTMENT = "AAAAAAAAAA";
+    private static final String UPDATED_DEPARTMENT = "BBBBBBBBBB";
+
     @Autowired
     private DevicesRepository devicesRepository;
 
@@ -122,7 +125,8 @@ public class DevicesResourceIntTest {
             .model(DEFAULT_MODEL)
             .registered(DEFAULT_REGISTERED)
             .availability(DEFAULT_AVAILABILITY)
-            .type(DEFAULT_TYPE);
+            .type(DEFAULT_TYPE)
+            .department(DEFAULT_DEPARTMENT);
         return devices;
     }
 
@@ -151,6 +155,7 @@ public class DevicesResourceIntTest {
         assertThat(testDevices.getRegistered()).isEqualTo(DEFAULT_REGISTERED);
         assertThat(testDevices.getAvailability()).isEqualTo(DEFAULT_AVAILABILITY);
         assertThat(testDevices.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testDevices.getDepartment()).isEqualTo(DEFAULT_DEPARTMENT);
 
         // Validate the Devices in Elasticsearch
         verify(mockDevicesSearchRepository, times(1)).save(testDevices);
@@ -193,7 +198,8 @@ public class DevicesResourceIntTest {
             .andExpect(jsonPath("$.[*].model").value(hasItem(DEFAULT_MODEL)))
             .andExpect(jsonPath("$.[*].registered").value(hasItem(DEFAULT_REGISTERED.toString())))
             .andExpect(jsonPath("$.[*].availability").value(hasItem(DEFAULT_AVAILABILITY.toString())))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].department").value(hasItem(DEFAULT_DEPARTMENT.toString())));
     }
     
     @Test
@@ -211,7 +217,8 @@ public class DevicesResourceIntTest {
             .andExpect(jsonPath("$.model").value(DEFAULT_MODEL))
             .andExpect(jsonPath("$.registered").value(DEFAULT_REGISTERED.toString()))
             .andExpect(jsonPath("$.availability").value(DEFAULT_AVAILABILITY.toString()))
-            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.department").value(DEFAULT_DEPARTMENT.toString()));
     }
 
     @Test
@@ -435,6 +442,45 @@ public class DevicesResourceIntTest {
         // Get all the devicesList where type is null
         defaultDevicesShouldNotBeFound("type.specified=false");
     }
+
+    @Test
+    @Transactional
+    public void getAllDevicesByDepartmentIsEqualToSomething() throws Exception {
+        // Initialize the database
+        devicesRepository.saveAndFlush(devices);
+
+        // Get all the devicesList where department equals to DEFAULT_DEPARTMENT
+        defaultDevicesShouldBeFound("department.equals=" + DEFAULT_DEPARTMENT);
+
+        // Get all the devicesList where department equals to UPDATED_DEPARTMENT
+        defaultDevicesShouldNotBeFound("department.equals=" + UPDATED_DEPARTMENT);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDevicesByDepartmentIsInShouldWork() throws Exception {
+        // Initialize the database
+        devicesRepository.saveAndFlush(devices);
+
+        // Get all the devicesList where department in DEFAULT_DEPARTMENT or UPDATED_DEPARTMENT
+        defaultDevicesShouldBeFound("department.in=" + DEFAULT_DEPARTMENT + "," + UPDATED_DEPARTMENT);
+
+        // Get all the devicesList where department equals to UPDATED_DEPARTMENT
+        defaultDevicesShouldNotBeFound("department.in=" + UPDATED_DEPARTMENT);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDevicesByDepartmentIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        devicesRepository.saveAndFlush(devices);
+
+        // Get all the devicesList where department is not null
+        defaultDevicesShouldBeFound("department.specified=true");
+
+        // Get all the devicesList where department is null
+        defaultDevicesShouldNotBeFound("department.specified=false");
+    }
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -447,7 +493,8 @@ public class DevicesResourceIntTest {
             .andExpect(jsonPath("$.[*].model").value(hasItem(DEFAULT_MODEL)))
             .andExpect(jsonPath("$.[*].registered").value(hasItem(DEFAULT_REGISTERED)))
             .andExpect(jsonPath("$.[*].availability").value(hasItem(DEFAULT_AVAILABILITY)))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)));
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
+            .andExpect(jsonPath("$.[*].department").value(hasItem(DEFAULT_DEPARTMENT)));
 
         // Check, that the count call also returns 1
         restDevicesMockMvc.perform(get("/api/devices/count?sort=id,desc&" + filter))
@@ -501,7 +548,8 @@ public class DevicesResourceIntTest {
             .model(UPDATED_MODEL)
             .registered(UPDATED_REGISTERED)
             .availability(UPDATED_AVAILABILITY)
-            .type(UPDATED_TYPE);
+            .type(UPDATED_TYPE)
+            .department(UPDATED_DEPARTMENT);
 
         restDevicesMockMvc.perform(put("/api/devices")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -517,6 +565,7 @@ public class DevicesResourceIntTest {
         assertThat(testDevices.getRegistered()).isEqualTo(UPDATED_REGISTERED);
         assertThat(testDevices.getAvailability()).isEqualTo(UPDATED_AVAILABILITY);
         assertThat(testDevices.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testDevices.getDepartment()).isEqualTo(UPDATED_DEPARTMENT);
 
         // Validate the Devices in Elasticsearch
         verify(mockDevicesSearchRepository, times(1)).save(testDevices);
@@ -580,7 +629,8 @@ public class DevicesResourceIntTest {
             .andExpect(jsonPath("$.[*].model").value(hasItem(DEFAULT_MODEL)))
             .andExpect(jsonPath("$.[*].registered").value(hasItem(DEFAULT_REGISTERED)))
             .andExpect(jsonPath("$.[*].availability").value(hasItem(DEFAULT_AVAILABILITY)))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)));
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
+            .andExpect(jsonPath("$.[*].department").value(hasItem(DEFAULT_DEPARTMENT)));
     }
 
     @Test

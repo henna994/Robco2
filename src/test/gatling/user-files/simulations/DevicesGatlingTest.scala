@@ -77,6 +77,7 @@ class DevicesGatlingTest extends Simulation {
                 , "registered":"SAMPLE_TEXT"
                 , "availability":"SAMPLE_TEXT"
                 , "type":"SAMPLE_TEXT"
+                , "department":"SAMPLE_TEXT"
                 }""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_devices_url"))).exitHereIfFailed
