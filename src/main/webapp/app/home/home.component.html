@@ -4,7 +4,19 @@
         <div>
             <div class="inner">
                
-                    <h1>Welcome to Robco</h1>
+                    <h1 class="text-light">Welcome to Robco</h1>
+                    <div [ngSwitch]="isAuthenticated()">
+                        <div class="alert alert-success col success text-center" *ngSwitchCase="true">
+                            <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+                                [translateValues]="{username: account.login}"> You are logged in as user "{{account.login}}". </span>
+                        </div>
+            
+                        <div class="col sign text-center" *ngSwitchCase="false">
+                            <button type="button"  class="alert-link btn btn-outline-light btn-lg btn-block" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</button> </div>
+                        <div class="col reg text-center" *ngSwitchCase="false">
+                            <button type="button" class="alert-link btn btn-outline-light btn-lg" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</button>
+                        </div>
+                    </div>
                     
                 </div>
     
@@ -16,26 +28,60 @@
         <div class="row">
            
     
-            <div [ngSwitch]="isAuthenticated()">
-                <div class="alert alert-success col success text-center" *ngSwitchCase="true">
-                    <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                        [translateValues]="{username: account.login}"> You are logged in as user "{{account.login}}". </span>
-                </div>
-    
-                <div class="alert alert-light col sign text-center" *ngSwitchCase="false">
-                    <a  class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a> </div>
-                <div class="alert alert-light col reg text-center" *ngSwitchCase="false">
-                    <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
-                </div>
-            </div>
+           
     
           
            
         </div>
         </div>
+        <hr class="light">
+
+        <div class="container-fluid morepad padding">
+
+                <div class="row robcotext text-center">
+                        <div class="mt-4 align-self-center col-md-4">
+    
+                        <h1 class="display-4">What is Robco</h1>
+                    </div>
+                    <div class="mt-4 col-md-7">
+
+                            <p style="font-size:160%;">Our Website is designed to accumulate all information on the devices that we use in our company. Our goal is to strive for easy accomadation in finding information about our technology as well as making sure that we are up to date.</p>
+
+                        </div>
+                </div>
+            </div>
+            <hr class="light">
+
+            <div class="container-fluid yopad padding bg-primary text-white">
+    
+                    <div class="row robcotext text-center">
+                            <div class="mt-4 col-12">
+            
+                                <h1 class="display-4">Why we are AWESOME</h1>
+                        </div>
+                        <div class="mt-4 col-md-4">
+                                <h1 class="display-4">Devices</h1>
+                                <p style="font-size:120%;">Find the device that you want within our database of devices. Use the search filter to find the device you want, or to make it a little more touch try finding it within our list.</p>
+    
+                            </div>
+                            <div class="mt-4 col-md-4">
+                                    <h1 class="display-4">Easy Navigation</h1>
+                                    <p style="font-size:120%;">Our Website allows easy access to anywhere within the site with the right authorization. Use our navigation links to find the page that you want.</p>
+        
+                                </div>
+                                <div class="mt-4 col-md-4">
+                                        <h1 class="display-4">Response Time</h1>
+                                        <p style="font-size:120%;">Want to contact us? Use our Contact Us navigation link to ask about any concerns. We will get back to you in record time.</p>
+            
+                                    </div>
+                    </div>
+                </div>
+
         <div class="container-fluid padding">
             <div class="row welcome text-center">
                 <div class="mt-4 col-12">
+                        <hr class="light">
+
                     <h1 class="display-4">Meet the Team</h1>
                 </div>
             </div>
@@ -47,9 +93,10 @@
         <div class="mt-4 col-md-4">
           <div class="card">
              <div class="card-top bg-primary text-white">
-                 <h4 class="card-title text-center">Henna Ghayas</h4>
+                 <h2 class="card-title text-center">Henna Ghayas</h2>
+                 <img class="card-img-top rounded mx-auto d-block img-fluid" src="../../content/images/henna.PNG" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">Computer Science Major at Oakland University. Have been in school 
+                    <p style="font-size:120%;" class="card-text">Computer Science Major at Oakland University. Have been in school 
                         so long that she is just ready to be done.
                     </p>
                 </div>
@@ -58,8 +105,8 @@
         </div>
         <div class="mt-4 col-md-4">
                 <div class="card">
-                   <div class="card-top bg-success">
-                       <h4 class="card-title text-center">Tanner Porteous</h4>
+                   <div class="card-top bg-primary text-white">
+                       <h2 class="card-title text-center">Tanner Porteous</h2>
                       <div class="card-body">
                           <p class="card-text">
                           </p>
@@ -69,8 +116,8 @@
               </div>
               <div class="mt-4 col-md-4">
                     <div class="card">
-                       <div class="card-top bg-danger">
-                           <h4 class="card-title text-center">David Michon</h4>
+                       <div class="card-top bg-primary text-white">
+                           <h2 class="card-title text-center">David Michon</h2>
                           <div class="card-body">
                               <p class="card-text">
                               </p>
@@ -80,8 +127,8 @@
                   </div>
                   <div class="mt-4 col-md-4">
                         <div class="card">
-                           <div class="card-top bg-warning">
-                               <h4 class="card-title text-center">Marcel Jonas</h4>
+                           <div class="card-top bg-primary text-white">
+                               <h2 class="card-title text-center">Marcel Jonas</h2>
                               <div class="card-body">
                                   <p class="card-text">
                                   </p>
@@ -91,8 +138,8 @@
                       </div>
                       <div class="mt-4 col-md-4">
                             <div class="card">
-                               <div class="card-top bg-info">
-                                   <h4 class="card-title text-center">Rawshan Arif</h4>
+                               <div class="card-top bg-primary text-white">
+                                   <h2 class="card-title text-center">Rawshan Arif</h2>
                                   <div class="card-body">
                                       <p class="card-text">
                                       </p>
