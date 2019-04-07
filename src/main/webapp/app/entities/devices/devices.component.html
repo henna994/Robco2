@@ -70,7 +70,7 @@
                 <td>{{devices.department}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                        <button type="submit"
                                 [routerLink]="['/devices', devices.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
