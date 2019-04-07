@@ -23,7 +23,7 @@
                         </span>
                     </a>
                 </li>
-                <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a class="nav-link" routerLink="devices" (click)="collapseNavbar()">
                             <span>
                                 <span jhiTranslate="global.menu.entities.devices">Devices</span>
