@@ -18,8 +18,7 @@ export class DevicesComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
-    selectSearch: string;
-    selSearch: string;
+
     constructor(
         protected devicesService: DevicesService,
         protected jhiAlertService: JhiAlertService,
@@ -28,14 +27,6 @@ export class DevicesComponent implements OnInit, OnDestroy {
         protected accountService: AccountService
     ) {
         this.currentSearch =
-            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
-                ? this.activatedRoute.snapshot.params['search']
-                : '';
-        this.selectSearch =
-            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
-                ? this.activatedRoute.snapshot.params['search']
-                : '';
-        this.selSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
                 ? this.activatedRoute.snapshot.params['search']
                 : '';
@@ -67,56 +58,6 @@ export class DevicesComponent implements OnInit, OnDestroy {
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
-        if (this.selectSearch) {
-            this.devicesService
-                .search({
-                    query: this.selectSearch
-                })
-                .pipe(
-                    filter((res: HttpResponse<IDevices[]>) => res.ok),
-                    map((res: HttpResponse<IDevices[]>) => res.body)
-                )
-                .subscribe((res: IDevices[]) => (this.devices = res), (res: HttpErrorResponse) => this.onError(res.message));
-            return;
-        }
-        this.devicesService
-            .query()
-            .pipe(
-                filter((res: HttpResponse<IDevices[]>) => res.ok),
-                map((res: HttpResponse<IDevices[]>) => res.body)
-            )
-            .subscribe(
-                (res: IDevices[]) => {
-                    this.devices = res;
-                    this.selectSearch = '';
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-        if (this.selSearch) {
-            this.devicesService
-                .search({
-                    query: this.selSearch
-                })
-                .pipe(
-                    filter((res: HttpResponse<IDevices[]>) => res.ok),
-                    map((res: HttpResponse<IDevices[]>) => res.body)
-                )
-                .subscribe((res: IDevices[]) => (this.devices = res), (res: HttpErrorResponse) => this.onError(res.message));
-            return;
-        }
-        this.devicesService
-            .query()
-            .pipe(
-                filter((res: HttpResponse<IDevices[]>) => res.ok),
-                map((res: HttpResponse<IDevices[]>) => res.body)
-            )
-            .subscribe(
-                (res: IDevices[]) => {
-                    this.devices = res;
-                    this.selSearch = '';
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
     }
 
     search(query) {
@@ -126,32 +67,12 @@ export class DevicesComponent implements OnInit, OnDestroy {
         this.currentSearch = query;
         this.loadAll();
     }
-    find(query) {
-        if (!query) {
-            return this.clear();
-        }
-        this.selectSearch = query;
-        this.loadAll();
-    }
-    finds(query) {
-        if (!query) {
-            return this.clear();
-        }
-        this.selSearch = query;
-        this.loadAll();
-    }
+
     clear() {
         this.currentSearch = '';
         this.loadAll();
     }
-    delete() {
-        this.selectSearch = '';
-        this.loadAll();
-    }
-    deletes() {
-        this.selSearch = '';
-        this.loadAll();
-    }
+
     ngOnInit() {
         this.loadAll();
         this.accountService.identity().then(account => {
