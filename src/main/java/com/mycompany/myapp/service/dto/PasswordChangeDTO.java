@@ -23,7 +23,7 @@ public class PasswordChangeDTO {
     }
     public static boolean authenticate(String password)
     {
-        // The password should be at least six characters long.
+        // The password should be at least ten characters long.
         // The password should contain at least one letter.
         // The password should have at least one digit.
         if ((password.length() > 10) &&
